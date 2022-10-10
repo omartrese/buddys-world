@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class camera : MonoBehaviour
 {
-    public GameObject John;
+    public GameObject buddy;
 
     void Update()
     {
         Vector3 position = transform.position;
-        position.x = John.transform.position.x;
+        position.x = buddy.transform.position.x;
         transform.position = position;
 
     }

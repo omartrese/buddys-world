@@ -16442,7 +16442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a692491fdbee6c4c830abd37e11a26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  John: {fileID: 3707957}
+  buddy: {fileID: 3707957}
 --- !u!1 &572283802
 GameObject:
   m_ObjectHideFlags: 0
