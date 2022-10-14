@@ -78,7 +78,7 @@ public class buddyMovement : MonoBehaviour
         if(Physics2D.Raycast(transform.position, Vector2.down, rayLength))
         {
            canJump = true;
-        } else canJump = false;
+        } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false;
 
     }
 
