@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemyScript : MonoBehaviour
 {
     public GameObject buddy;
-    
+    public GameObject enemy;
     public float enemyRayLength;
     public GameObject dirt;
     
@@ -16,6 +16,7 @@ public class enemyScript : MonoBehaviour
     public Transform shootOrigin;
     public float dirtSpeed;
     public float dirtCooldown;
+    private int health = 3;
 
     private AudioSource enemyAudioSource;
 
@@ -27,28 +28,27 @@ public class enemyScript : MonoBehaviour
 
     void Update()
     {
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, enemyDirection, enemyRayLength);
+        if(enemy == null) return;
 
         if((buddy.transform.position.x - transform.position.x) < 0)
         {
             transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
-            enemyDirection = Vector2.left;
         } else 
         {
             transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-            enemyDirection = Vector2.right;
         }
 
-        Debug.DrawRay(transform.position, enemyDirection * enemyRayLength, Color.yellow);
+        float objectsDistance = Mathf.Abs(buddy.transform.position.x - transform.position.x);
 
-        if(hit.collider.tag == "Player" && canShootEnemy)
-        {
+       if(canShootEnemy && objectsDistance < 5.0f)
+       {
             StartCoroutine(Shoot());
-        }
+       }
+
+        
     }
 
-    IEnumerator Shoot()
+    public IEnumerator Shoot()
     {
         
         int enemyShootDirection()
@@ -72,5 +72,12 @@ public class enemyScript : MonoBehaviour
         yield return new WaitForSeconds(dirtCooldown);
         Destroy(instantiatedDirt);
         canShootEnemy = true;   
+    }
+
+    public void hit()
+    {
+        health--;
+        Debug.Log(health);
+        if(health == 0) Destroy(gameObject);
     }
 }

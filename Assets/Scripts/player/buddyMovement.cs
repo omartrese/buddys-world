@@ -32,6 +32,9 @@ public class buddyMovement : MonoBehaviour
     public Transform stoneOrigin;
     public float stoneSpeed, stoneCooldown;
     private bool canShoot; 
+    //---------------------//
+    private int health = 5;
+    public GameObject buddy;
 
 
 
@@ -48,6 +51,8 @@ public class buddyMovement : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+
+        if(buddy == null) return;
 
 
         if(horizontal < 0.0f) 
@@ -123,6 +128,11 @@ public class buddyMovement : MonoBehaviour
         
     }
 
-  
+    public void hit()
+    {
+        health--;
+        Debug.Log(health);
+        if(health == 0) Destroy(gameObject);
+    }
     
 }

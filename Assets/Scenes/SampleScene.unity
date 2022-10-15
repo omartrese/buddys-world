@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 3707958}
   - component: {fileID: 3707963}
   - component: {fileID: 3707964}
+  - component: {fileID: 3707965}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -155,7 +156,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0000003973643, y: 0.011650721}
@@ -204,6 +205,7 @@ MonoBehaviour:
   stoneOrigin: {fileID: 676810658}
   stoneSpeed: 900
   stoneCooldown: 0.6
+  buddy: {fileID: 3707957}
 --- !u!212 &3707961
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -388,6 +390,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &3707965
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3707957}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.15420666, y: -1.475965}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 4}
+    newSize: {x: 2.56, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.86373967, y: 0.8718356}
+  m_EdgeRadius: 0
 --- !u!1 &48851865
 GameObject:
   m_ObjectHideFlags: 0
@@ -11643,7 +11671,6 @@ GameObject:
   - component: {fileID: 572283804}
   - component: {fileID: 572283803}
   - component: {fileID: 572283807}
-  - component: {fileID: 572283808}
   - component: {fileID: 572283809}
   m_Layer: 0
   m_Name: enemy
@@ -11662,7 +11689,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0000003973643, y: 0.011650721}
@@ -11680,7 +11707,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
@@ -11770,38 +11797,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buddy: {fileID: 3707957}
+  enemy: {fileID: 572283802}
   enemyRayLength: 3
   dirt: {fileID: 2575471825035959975, guid: 1208bdf8714076c4c8b42e8c56714b19, type: 3}
   enemyThrowSound: {fileID: 8300000, guid: 2fb36115436bc1e41bc3fe8c7b546bda, type: 3}
   shootOrigin: {fileID: 1838389016}
-  dirtSpeed: 900
-  dirtCooldown: 1.2
---- !u!61 &572283808
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572283802}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.16245246, y: -1.5974444}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 4}
-    newSize: {x: 2.56, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0437822, y: 0.48020673}
-  m_EdgeRadius: 0
+  dirtSpeed: 5000
+  dirtCooldown: 2
 --- !u!82 &572283809
 AudioSource:
   m_ObjectHideFlags: 0
