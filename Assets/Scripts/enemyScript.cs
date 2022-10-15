@@ -29,6 +29,7 @@ public class enemyScript : MonoBehaviour
     void Update()
     {
         if(enemy == null) return;
+        if(buddy == null) return;
 
         if((buddy.transform.position.x - transform.position.x) < 0)
         {
@@ -77,7 +78,15 @@ public class enemyScript : MonoBehaviour
     public void hit()
     {
         health--;
-        Debug.Log(health);
+        Debug.Log("enemy health: " +health);
         if(health == 0) Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "projectile")
+        {
+            hit();
+        }
     }
 }

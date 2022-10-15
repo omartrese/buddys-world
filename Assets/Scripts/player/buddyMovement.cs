@@ -33,7 +33,7 @@ public class buddyMovement : MonoBehaviour
     public float stoneSpeed, stoneCooldown;
     private bool canShoot; 
     //---------------------//
-    private int health = 5;
+    private int playerHealth = 5;
     public GameObject buddy;
 
 
@@ -50,10 +50,10 @@ public class buddyMovement : MonoBehaviour
     
     void Update()
     {
+
+        if(gameObject == null) return;
+
         horizontal = Input.GetAxisRaw("Horizontal");
-
-        if(buddy == null) return;
-
 
         if(horizontal < 0.0f) 
         {
@@ -123,16 +123,27 @@ public class buddyMovement : MonoBehaviour
         Destroy(newStone);
         canShoot = true;
         
+        
+
         // newStone.transform.position = stoneOrigin.position + bDirection * stoneSpeed * Time.deltaTime;
         // newStone.transform.Translate(bDirection * stoneSpeed * Time.deltaTime);   
         
     }
 
-    public void hit()
+    IEnumerator playerHit()
     {
-        health--;
-        Debug.Log(health);
-        if(health == 0) Destroy(gameObject);
+        playerHealth--;
+        Debug.Log("Player health: " + playerHealth);
+        if(playerHealth == 0) Destroy(gameObject);
+        yield return new WaitForSeconds(0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "projectile")
+        {
+            StartCoroutine(playerHit());
+        }
     }
     
 }

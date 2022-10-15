@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3632320887684883438}
   - component: {fileID: 3825877683632030345}
   - component: {fileID: -4620820046775898917}
-  - component: {fileID: 2100658749574803803}
+  - component: {fileID: -6674022938429631360}
   m_Layer: 0
   m_Name: stone
-  m_TagString: Untagged
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,8 +123,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &2100658749574803803
+  m_Constraints: 6
+--- !u!114 &-6674022938429631360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5839521873683987218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c759aff8517be844db76ccb4fc117989, type: 3}
+  m_Script: {fileID: 11500000, guid: a6028ab092fe23a44828889b4680e916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
