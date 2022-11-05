@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - buddy
   - projectile
+  - stonesBag
   layers:
   - Default
   - TransparentFX

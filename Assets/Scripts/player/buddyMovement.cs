@@ -32,6 +32,7 @@ public class buddyMovement : MonoBehaviour
     public Transform stoneOrigin;
     public float stoneSpeed, stoneCooldown;
     private bool canShoot; 
+    private int numberStones;
     //---------------------//
     private int playerHealth = 5;
     public GameObject buddy;
@@ -45,6 +46,7 @@ public class buddyMovement : MonoBehaviour
         an = GetComponent<Animator>();   
         audioSource = GetComponent<AudioSource>();
         canShoot = true;
+        numberStones = 0;
     }
 
     
@@ -63,10 +65,13 @@ public class buddyMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }        
-        
-        
 
         an.SetBool("running", horizontal != 0.0f);
+
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        --- *JUMPING and THROWING*
+        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        ---*/
 
         if(Input.GetKeyDown(KeyCode.W) && canJump)
         {
@@ -84,6 +89,13 @@ public class buddyMovement : MonoBehaviour
         {
            canJump = true;
         } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false;
+
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        ---STONES COUNT
+        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        ---*/
+
+        if(numberStones < 1) canShoot = false;
 
     }
 
@@ -116,6 +128,7 @@ public class buddyMovement : MonoBehaviour
 
         audioSource.PlayOneShot(throwSound);
         canShoot = false;
+        numberStones--;
         GameObject newStone = Instantiate(stonePrefab, stoneOrigin.position, Quaternion.identity);
         newStone.GetComponent<Rigidbody2D>().velocity = new Vector2(stoneSpeed * bDirection() * Time.fixedDeltaTime, 0f);
         
@@ -138,11 +151,25 @@ public class buddyMovement : MonoBehaviour
         yield return new WaitForSeconds(0);
     }
 
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "projectile")
         {
             StartCoroutine(playerHit());
+        } //else if(other.gameObject.tag == "stonesBag")
+        // {
+        //     numberStones++;
+        // }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "stonesBag")
+        {
+            
         }
     }
     

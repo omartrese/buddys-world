@@ -41,7 +41,7 @@ public class enemyScript : MonoBehaviour
 
         float objectsDistance = Mathf.Abs(buddy.transform.position.x - transform.position.x);
 
-       if(canShootEnemy && objectsDistance < 5.0f)
+       if(canShootEnemy && objectsDistance < 9.0f)
        {
             StartCoroutine(Shoot());
        }
@@ -78,7 +78,7 @@ public class enemyScript : MonoBehaviour
     public void hit()
     {
         health--;
-        Debug.Log("enemy health: " +health);
+        Debug.Log("enemy health: " + health);
         if(health == 0) Destroy(gameObject);
     }
 
