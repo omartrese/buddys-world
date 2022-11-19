@@ -6,11 +6,22 @@ public class destroyProjectiles : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(gameObject);
+        if(other.gameObject.tag == "buddy" || other.gameObject.tag == "enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Destroy(gameObject);
+        if(other.gameObject.tag != "stonesBag")
+        {
+            Destroy(gameObject);
+        }
+
+        if(other.gameObject.tag == "buddy" || other.gameObject.tag == "enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

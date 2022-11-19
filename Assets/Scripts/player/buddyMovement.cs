@@ -30,9 +30,10 @@ public class buddyMovement : MonoBehaviour
    [Header("STONE SHOOTING")]
     public GameObject stonePrefab;
     public Transform stoneOrigin;
-    public float stoneSpeed, stoneCooldown;
-    private bool canShoot; 
+    public float stoneSpeed, stoneCooldown; 
     private int numberStones;
+    private float shootTimer; 
+    public float initialShootTimer = 1f;
     //---------------------//
     private int playerHealth = 5;
     public GameObject buddy;
@@ -45,15 +46,17 @@ public class buddyMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); 
         an = GetComponent<Animator>();   
         audioSource = GetComponent<AudioSource>();
-        canShoot = true;
         numberStones = 0;
+        Debug.Log("number of stones: " + numberStones);   
+        shootTimer = 0f;                      
     }
 
     
     void Update()
     {
-
         if(gameObject == null) return;
+
+        shootTimer -= Time.deltaTime;
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -77,7 +80,7 @@ public class buddyMovement : MonoBehaviour
         {
             jump();
         }
-        if(Input.GetKeyDown(KeyCode.Space) && canShoot)
+        if(Input.GetKeyDown(KeyCode.Space) && numberStones > 0 && shootTimer <= 0f) 
         {
             StartCoroutine(Shoot());
         }
@@ -95,7 +98,7 @@ public class buddyMovement : MonoBehaviour
         -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         ---*/
 
-        if(numberStones < 1) canShoot = false;
+        
 
     }
 
@@ -127,14 +130,15 @@ public class buddyMovement : MonoBehaviour
         }
 
         audioSource.PlayOneShot(throwSound);
-        canShoot = false;
         numberStones--;
+        Debug.Log("number of stones: " + numberStones);
+        shootTimer = initialShootTimer;
         GameObject newStone = Instantiate(stonePrefab, stoneOrigin.position, Quaternion.identity);
         newStone.GetComponent<Rigidbody2D>().velocity = new Vector2(stoneSpeed * bDirection() * Time.fixedDeltaTime, 0f);
         
         yield return new WaitForSeconds(stoneCooldown);
         Destroy(newStone);
-        canShoot = true;
+        
         
         
 
@@ -158,19 +162,16 @@ public class buddyMovement : MonoBehaviour
         if(other.gameObject.tag == "projectile")
         {
             StartCoroutine(playerHit());
-        } //else if(other.gameObject.tag == "stonesBag")
-        // {
-        //     numberStones++;
-        // }
+        } 
 
-    }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
         if(other.gameObject.tag == "stonesBag")
         {
-            
+            numberStones++;
+            Debug.Log("number stones: " + numberStones);
         }
     }
+
+    
     
 }
