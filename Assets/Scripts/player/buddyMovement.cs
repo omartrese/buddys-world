@@ -12,8 +12,8 @@ public class buddyMovement : MonoBehaviour
    //----------------------------//
    //-----------JUMP-------------//
     public float jumpForce = 1f;
-    public bool canJump;
-    public float rayLength;
+    private bool canJump;
+    private float rayLength;
     
    //---------------------//
    //-----ANIMATION-------//
@@ -35,7 +35,7 @@ public class buddyMovement : MonoBehaviour
     private float shootTimer; 
     public float initialShootTimer = 1f;
     //---------------------//
-    private int playerHealth = 5;
+    public int playerHealth = 5;
     public GameObject buddy;
 
 
@@ -48,7 +48,13 @@ public class buddyMovement : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         numberStones = 0;
         Debug.Log("number of stones: " + numberStones);   
-        shootTimer = 0f;                      
+        shootTimer = 0f;       
+        rayLength = 0.77f;
+        if(playerHealth <= 0)
+        {
+            playerHealth = 1;
+        }               
+        Debug.Log("Player's health is: " + playerHealth);
     }
 
     
@@ -93,12 +99,7 @@ public class buddyMovement : MonoBehaviour
            canJump = true;
         } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false;
 
-        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        ---STONES COUNT
-        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        ---*/
-
-        
+               
 
     }
 

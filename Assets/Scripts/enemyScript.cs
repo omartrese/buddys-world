@@ -16,7 +16,7 @@ public class enemyScript : MonoBehaviour
     public Transform shootOrigin;
     public float dirtSpeed;
     public float dirtCooldown;
-    private int health = 3;
+    public int health = 3;
 
     private AudioSource enemyAudioSource;
 
@@ -24,6 +24,11 @@ public class enemyScript : MonoBehaviour
     {
         enemyAudioSource = GetComponent<AudioSource>();    
         canShootEnemy = true;
+        if(health <= 0)
+        {
+            health = 1;
+        }
+        Debug.Log("Enemy's health is: " + health);
     }
 
     void Update()
@@ -77,9 +82,16 @@ public class enemyScript : MonoBehaviour
 
     public void hit()
     {
-        health--;
-        Debug.Log("enemy health: " + health);
-        if(health == 0) Destroy(gameObject);
+        if(health <= 0) 
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            health--;
+            Debug.Log("enemy health: " + health);
+            if(health == 0) Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
