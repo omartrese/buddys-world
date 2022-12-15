@@ -49,7 +49,7 @@ public class buddyMovement : MonoBehaviour
         numberStones = 0;
         Debug.Log("number of stones: " + numberStones);   
         shootTimer = 0f;       
-        rayLength = 0.77f;
+        rayLength = 0.65f;
         if(playerHealth <= 0)
         {
             playerHealth = 1;
@@ -94,7 +94,7 @@ public class buddyMovement : MonoBehaviour
         Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
 
         
-        if(Physics2D.Raycast(transform.position, Vector2.down, rayLength))
+        if(Physics2D.Raycast(transform.position, Vector2.down, rayLength)) //-2.118419, -2.519
         {
            canJump = true;
         } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false;
