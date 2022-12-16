@@ -15,7 +15,7 @@ Then you have to descompress the ZIP and open the directory on UNITY HUB (you ne
 
 The other form is cloning the project
 To do this you have to click on **code** and below you have the URL that you need to copy
-and with this URL you do this command in your terminal
+and with this URL you write this command in your terminal
 
 ```
 git clone https://github.com/omartrese/buddys-world.git
