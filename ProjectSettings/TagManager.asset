@@ -9,6 +9,7 @@ TagManager:
   - buddy
   - projectile
   - stonesBag
+  - startLevel
   layers:
   - Default
   - TransparentFX

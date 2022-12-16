@@ -9,12 +9,12 @@ public class buddyMovement : MonoBehaviour
     public float speed = 1f;
     private Rigidbody2D rb;
     private float horizontal;
+    private bool canMove;
    //----------------------------//
    //-----------JUMP-------------//
     public float jumpForce = 1f;
     private bool canJump;
     private float rayLength;
-    
    //---------------------//
    //-----ANIMATION-------//
     private Animator an;
@@ -69,13 +69,15 @@ public class buddyMovement : MonoBehaviour
         if(horizontal < 0.0f) 
         {
             transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
-
+           
         } else if(horizontal > 0.0f)
         {
             transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-        }        
+            
+        } 
 
-        an.SetBool("running", horizontal != 0.0f);
+            an.SetBool("running", horizontal != 0.0f);
+        
 
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         --- *JUMPING and THROWING*
@@ -156,8 +158,6 @@ public class buddyMovement : MonoBehaviour
         yield return new WaitForSeconds(0);
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "projectile")
@@ -171,8 +171,8 @@ public class buddyMovement : MonoBehaviour
             numberStones++;
             Debug.Log("number stones: " + numberStones);
         }
+
     }
 
-    
-    
+
 }

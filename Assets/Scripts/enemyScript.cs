@@ -8,7 +8,9 @@ public class enemyScript : MonoBehaviour
     public GameObject enemy;
     public float enemyRayLength;
     public GameObject dirt;
-    
+    float objectsDistance;  
+    public buddyMovement buddyScript;
+
     private bool canShootEnemy;
     public AudioClip enemyThrowSound;
     
@@ -44,12 +46,9 @@ public class enemyScript : MonoBehaviour
             transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }
 
-        float objectsDistance = Mathf.Abs(buddy.transform.position.x - transform.position.x);
+        objectsDistance = Mathf.Abs(buddy.transform.position.x - transform.position.x);
 
-       if(canShootEnemy && objectsDistance < 9.0f)
-       {
-            StartCoroutine(Shoot());
-       }
+       
 
         
     }
@@ -70,14 +69,26 @@ public class enemyScript : MonoBehaviour
 
             return 0;
         }
-        enemyAudioSource.PlayOneShot(enemyThrowSound);  
-        canShootEnemy = false;
-        GameObject instantiatedDirt = Instantiate(dirt, shootOrigin.position, Quaternion.identity);
-        instantiatedDirt.GetComponent<Rigidbody2D>().velocity = new Vector2(dirtSpeed * enemyShootDirection() * Time.deltaTime, 0f);
+        if(buddyScript.playerHealth > 0)
+        {
 
-        yield return new WaitForSeconds(dirtCooldown);
-        Destroy(instantiatedDirt);
-        canShootEnemy = true;   
+            enemyAudioSource.PlayOneShot(enemyThrowSound);  
+            canShootEnemy = false;
+            GameObject instantiatedDirt = Instantiate(dirt, shootOrigin.position, Quaternion.identity);
+            instantiatedDirt.GetComponent<Rigidbody2D>().velocity = new Vector2(dirtSpeed * enemyShootDirection() * Time.deltaTime, 0f);
+    
+            yield return new WaitForSeconds(dirtCooldown);
+            Destroy(instantiatedDirt);
+            canShootEnemy = true;   
+        }
+    }
+
+    private void FixedUpdate()
+    {
+       if(canShootEnemy && objectsDistance < 9.0f)
+       {
+        StartCoroutine(Shoot());
+       }    
     }
 
     public void hit()
