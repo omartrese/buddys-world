@@ -7,7 +7,7 @@ First you need to have installed UNITY
 
 I developed this game on the Unity version *2021.3.11f1*. I don't know how it works on old versions but I recommend you use that version or higher
 
-Then you need to have downloaded the project, you can do it **downloading the zip and descompressing it** or **cloning the project**
+Then you need to have downloaded the project, you can do it ***downloading the zip and descompressing it*** or ***cloning the project***
 
 If you want to download the ZIP click on **code** and **Download ZIP**
 
