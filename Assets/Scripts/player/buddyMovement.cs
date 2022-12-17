@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class buddyMovement : MonoBehaviour
 {
     //-----MOVEMENT--------//
     [Header("PLAYER MOVEMENT")]
     public float speed = 1f;
-    private Rigidbody2D rb;
+    private Rigidbody2D rigidBody;
     private float horizontal;
-    private bool canMove;
+    public GameObject cameraObject;
    //----------------------------//
    //-----------JUMP-------------//
     public float jumpForce = 1f;
@@ -35,15 +36,22 @@ public class buddyMovement : MonoBehaviour
     private float shootTimer; 
     public float initialShootTimer = 1f;
     //---------------------//
+    [Space(height:20)]
     public int playerHealth = 5;
     public GameObject buddy;
-
+    //------GAMEPLAY------//
+    [Space(height:20)]
+    [Header("GAMEPLAY")]
+    public GameObject shootTutorialgameObject;
+    public TextMeshProUGUI playerHealthText;
 
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+
+        shootTutorialgameObject.SetActive(false);
+        rigidBody = GetComponent<Rigidbody2D>(); 
         an = GetComponent<Animator>();   
         audioSource = GetComponent<AudioSource>();
         numberStones = 0;
@@ -61,6 +69,8 @@ public class buddyMovement : MonoBehaviour
     void Update()
     {
         if(gameObject == null) return;
+
+        playerHealthText.text = "PlayerHealth: " + playerHealth.ToString();
 
         shootTimer -= Time.deltaTime;
 
@@ -107,12 +117,12 @@ public class buddyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed * Time.deltaTime, rb.velocity.y);
+        rigidBody.velocity = new Vector2(horizontal * speed * Time.deltaTime, rigidBody.velocity.y);
     }
 
     private void jump()
     {
-        rb.AddForce(Vector2.up * jumpForce);
+        rigidBody.AddForce(Vector2.up * jumpForce);
         audioSource.PlayOneShot(jumpSound);
     }
 
@@ -153,6 +163,8 @@ public class buddyMovement : MonoBehaviour
     IEnumerator playerHit()
     {
         playerHealth--;
+        transform.position = new Vector3(-11.8699999f,-1.54999995f,0f); 
+        cameraObject.transform.position = new Vector3(-5.01999998f, 0f, -10f);
         Debug.Log("Player health: " + playerHealth);
         if(playerHealth == 0) Destroy(gameObject);
         yield return new WaitForSeconds(0);
@@ -160,17 +172,31 @@ public class buddyMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "projectile")
+        if(other.gameObject.tag == "projectile" || other.gameObject.tag == "dieZone")
         {
             StartCoroutine(playerHit());
         } 
 
+        if(other.gameObject.tag == "shootTutorial")
+        {
+            StartCoroutine(shootTutorial());
+        }        
 
         if(other.gameObject.tag == "stonesBag")
         {
             numberStones++;
             Debug.Log("number stones: " + numberStones);
         }
+
+    }
+
+    IEnumerator shootTutorial()
+    {
+        shootTutorialgameObject.SetActive(true);
+
+        yield return new WaitForSeconds(5);
+
+        shootTutorialgameObject.SetActive(false);
 
     }
 

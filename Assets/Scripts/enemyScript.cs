@@ -56,6 +56,7 @@ public class enemyScript : MonoBehaviour
     public IEnumerator Shoot()
     {
         
+    
         int enemyShootDirection()
         {
             if(transform.localScale.x < 0f)
@@ -85,10 +86,10 @@ public class enemyScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-       if(canShootEnemy && objectsDistance < 9.0f)
-       {
-        StartCoroutine(Shoot());
-       }    
+        if(canShootEnemy && objectsDistance < 9.0f)
+        {
+            StartCoroutine(Shoot());
+        }    
     }
 
     public void hit()

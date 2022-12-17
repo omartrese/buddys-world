@@ -10,6 +10,8 @@ TagManager:
   - projectile
   - stonesBag
   - startLevel
+  - dieZone
+  - shootTutorial
   layers:
   - Default
   - TransparentFX
