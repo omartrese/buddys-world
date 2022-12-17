@@ -18,7 +18,7 @@ public class buddyMovement : MonoBehaviour
     private float rayLength;
    //---------------------//
    //-----ANIMATION-------//
-    private Animator an;
+    private Animator animator;
    //------SOUNDS---------//
     private AudioSource audioSource;
     [Space(height:20)]
@@ -52,7 +52,7 @@ public class buddyMovement : MonoBehaviour
 
         shootTutorialgameObject.SetActive(false);
         rigidBody = GetComponent<Rigidbody2D>(); 
-        an = GetComponent<Animator>();   
+        animator = GetComponent<Animator>();   
         audioSource = GetComponent<AudioSource>();
         numberStones = 0;
         Debug.Log("number of stones: " + numberStones);   
@@ -86,7 +86,7 @@ public class buddyMovement : MonoBehaviour
             
         } 
 
-            an.SetBool("running", horizontal != 0.0f);
+            animator.SetBool("running", horizontal != 0.0f);
         
 
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
