@@ -23,7 +23,7 @@ git clone https://github.com/omartrese/buddys-world.git
 
 And the same, you need to open the dir on UNITY HUB and then you can open the project
 
-You are free to modify in this game all you want, see how it works, etc.
+You are free to modify this game all you want, see how it works, etc.
 
 
 
