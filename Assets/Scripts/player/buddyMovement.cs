@@ -18,7 +18,7 @@ public class buddyMovement : MonoBehaviour
     private float rayLength;
    //---------------------//
    //-----ANIMATION-------//
-    private Animator an;
+    private Animator animator;
    //------SOUNDS---------//
     private AudioSource audioSource;
     [Space(height:20)]
@@ -42,22 +42,31 @@ public class buddyMovement : MonoBehaviour
     //------GAMEPLAY------//
     [Space(height:20)]
     [Header("GAMEPLAY")]
-    public GameObject shootTutorialgameObject;
+    public GameObject shootTutorialText;
     public TextMeshProUGUI playerHealthText;
+    public GameObject shootTutorialCollider;
+    bool tutorialCollided;
 
 
 
     void Start()
     {
-
-        shootTutorialgameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
+        tutorialCollided = false;
+        shootTutorialText.SetActive(false);
+        
         rigidBody = GetComponent<Rigidbody2D>(); 
-        an = GetComponent<Animator>();   
+        animator = GetComponent<Animator>();   
         audioSource = GetComponent<AudioSource>();
+        
         numberStones = 0;
         Debug.Log("number of stones: " + numberStones);   
         shootTimer = 0f;       
+        
         rayLength = 0.65f;
+        
         if(playerHealth <= 0)
         {
             playerHealth = 1;
@@ -68,17 +77,17 @@ public class buddyMovement : MonoBehaviour
     
     void Update()
     {
-        if(gameObject == null) return;
+        if(gameObject == null) return; //IF THE PLAYER DOESN'T EXISTS (IF SOMETHING DESTROYED PLAYER), DO NOT EJECUTE THIS SCRIPT  
 
-        playerHealthText.text = "PlayerHealth: " + playerHealth.ToString();
+        playerHealthText.text = "PlayerHealth: " + playerHealth.ToString(); //SHOWS THE PLAYER'S LIFE ON TEXT
 
-        shootTimer -= Time.deltaTime;
+        shootTimer -= Time.deltaTime;  //SHOOW COOLDOWN
 
-        horizontal = Input.GetAxisRaw("Horizontal");
+        horizontal = Input.GetAxisRaw("Horizontal"); //A and D or LEFT and RIGHT ARROWS HAVE VALUES BETWEEN -1 and 1
 
         if(horizontal < 0.0f) 
         {
-            transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
+            transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f); //TO CHANGE THE DIRECTION OF THE CHARACTER
            
         } else if(horizontal > 0.0f)
         {
@@ -86,7 +95,13 @@ public class buddyMovement : MonoBehaviour
             
         } 
 
-            an.SetBool("running", horizontal != 0.0f);
+        if(tutorialCollided)
+        {
+            StartCoroutine(shootTutorial());
+        }
+
+
+        animator.SetBool("running", horizontal != 0.0f); //TO ANIMATE THE PLAYER
         
 
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -94,19 +109,19 @@ public class buddyMovement : MonoBehaviour
         -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         ---*/
 
-        if(Input.GetKeyDown(KeyCode.W) && canJump)
+        if(Input.GetKeyDown(KeyCode.W) && canJump) //IF THE PLAYER CAN JUMP IN THAT MOMENT AND PRESS THE *W* BUTTON, JUMPS
         {
             jump();
         }
         if(Input.GetKeyDown(KeyCode.Space) && numberStones > 0 && shootTimer <= 0f) 
         {
-            StartCoroutine(Shoot());
+            StartCoroutine(Shoot()); //IF THE PLAYER PRESS THE *SPACE*, THE COOLDOWN IS 0, AND HAVE STONES, SHOOTS
         }
 
-        Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
+        Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red); //*ray to debugging the player jump*
 
         
-        if(Physics2D.Raycast(transform.position, Vector2.down, rayLength)) //-2.118419, -2.519
+        if(Physics2D.Raycast(transform.position, Vector2.down, rayLength)) //IF THE PLAYER IS IN THE FLOOR, CAN JUMP
         {
            canJump = true;
         } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false;
@@ -117,12 +132,12 @@ public class buddyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidBody.velocity = new Vector2(horizontal * speed * Time.deltaTime, rigidBody.velocity.y);
+        rigidBody.velocity = new Vector2(horizontal * speed * Time.deltaTime, rigidBody.velocity.y); //THE LINE THAT MAKES THE PLAYER MOVE
     }
 
     private void jump()
     {
-        rigidBody.AddForce(Vector2.up * jumpForce);
+        rigidBody.AddForce(Vector2.up * jumpForce); //THE LINE THAT ADDS A FORCE (Xd) TO JUMP
         audioSource.PlayOneShot(jumpSound);
     }
 
@@ -140,23 +155,24 @@ public class buddyMovement : MonoBehaviour
             }
 
             return 0;
-        }
+        } //DETECT THE PLAYER DIRECTION
 
         audioSource.PlayOneShot(throwSound);
+
         numberStones--;
+
         Debug.Log("number of stones: " + numberStones);
+        
         shootTimer = initialShootTimer;
+        
         GameObject newStone = Instantiate(stonePrefab, stoneOrigin.position, Quaternion.identity);
+        
         newStone.GetComponent<Rigidbody2D>().velocity = new Vector2(stoneSpeed * bDirection() * Time.fixedDeltaTime, 0f);
         
         yield return new WaitForSeconds(stoneCooldown);
+        
         Destroy(newStone);
-        
-        
-        
-
-        // newStone.transform.position = stoneOrigin.position + bDirection * stoneSpeed * Time.deltaTime;
-        // newStone.transform.Translate(bDirection * stoneSpeed * Time.deltaTime);   
+           
         
     }
 
@@ -179,7 +195,7 @@ public class buddyMovement : MonoBehaviour
 
         if(other.gameObject.tag == "shootTutorial")
         {
-            StartCoroutine(shootTutorial());
+            tutorialCollided = true;
         }        
 
         if(other.gameObject.tag == "stonesBag")
@@ -189,16 +205,25 @@ public class buddyMovement : MonoBehaviour
         }
 
     }
-
+    
     IEnumerator shootTutorial()
     {
-        shootTutorialgameObject.SetActive(true);
+        shootTutorialText.SetActive(true);
 
-        yield return new WaitForSeconds(5);
+        Destroy(shootTutorialCollider);
 
-        shootTutorialgameObject.SetActive(false);
+        tutorialCollided = false;
 
+        yield return new WaitForSeconds(3);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Destroy(shootTutorialText);
+        }
+
+        Destroy(shootTutorialText);
     }
+    
 
 
 }

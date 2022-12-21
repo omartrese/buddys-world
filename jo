@@ -1,0 +1,176 @@
+[33mcommit 716526df08f7c9be0a20ec0229cdc9b92edff775[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 3194dd8 f201a5a
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sat Dec 17 19:56:14 2022 +0100
+
+    Merge branch 'main' of https://github.com/omartrese/buddys-world
+
+[33mcommit 3194dd8dab2c72ff2e64f2f6ffc4de37dc1f6f77[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sat Dec 17 19:56:11 2022 +0100
+
+    alpha01
+
+[33mcommit f201a5a9c7928c405583feaeea1cd43a7713bc92[m
+Author: Ody <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 19:47:14 2022 +0100
+
+    Update README.md
+
+[33mcommit f61bd2c40cd29d079c0c84f9d8bdfd19c08f520b[m
+Author: Ody <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 18:57:02 2022 +0100
+
+    Update README.md
+
+[33mcommit 1af1111707ed30ef54b9fe8010edb5894667a42c[m
+Author: Ody <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 18:49:19 2022 +0100
+
+    Update README.md
+
+[33mcommit 6310f3292e96c079aa7d8742555f175f93293acd[m
+Author: Ody <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 18:47:19 2022 +0100
+
+    Update README.md
+
+[33mcommit e4f425538a478fde18ef20cbc719629e19efd9d5[m
+Author: Ody <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 18:46:55 2022 +0100
+
+    Update README.md
+
+[33mcommit 0e669ccc1b7a5138d5213cf36cc49e2be25db329[m
+Author: Ody <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 18:46:28 2022 +0100
+
+    Update README.md
+
+[33mcommit 7bed06742c20aa7d4e3f7fe3bf19ac4338b508fa[m
+Author: Ody <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 18:45:53 2022 +0100
+
+    Update README.md
+
+[33mcommit 29c2fa1df8bf911d23bce58731211b04884122eb[m
+Author: Ody <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 18:44:46 2022 +0100
+
+    how to set-up
+
+[33mcommit 05e95a4108d17f1b14342e05b33f9c0b53f29606[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 16 18:30:03 2022 +0100
+
+    bug-fixes
+
+[33mcommit ad5869ad40adbf40bb905f4a7cba0bdf50dfa690[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Thu Dec 15 22:15:56 2022 +0100
+
+    some bugs fixes
+
+[33mcommit 32244ce4463232e86c81ed287445eed11890019d[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Mon Dec 12 18:37:40 2022 +0100
+
+    fix some bugs and details
+
+[33mcommit 7a6d31a3968249b63f002776b7a0d7baa188a5dc[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Dec 9 20:18:14 2022 +0100
+
+    putted the background
+
+[33mcommit 8e16932487f5c01c3bedefbcfd37c5d5bd17595b[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sat Nov 19 20:49:06 2022 +0100
+
+    stones-bag adding
+    
+    now the player can't shoot infinite stones, he need to take bags with stones in to shoot these stones.
+
+[33mcommit cb04b0a980af44366b65a945219f12b73209131e[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Thu Nov 17 20:58:50 2022 +0100
+
+    Create fondo-jueguito.jpg
+
+[33mcommit 808d481077a723d7745fe3fd8ef9f4b4d2ab1531[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sat Nov 5 18:50:35 2022 +0100
+
+    bag-version
+    
+    added the bag. In development
+
+[33mcommit 7d36ee887329c5d17c93e2c36941c393508db230[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sat Oct 22 00:19:47 2022 +0200
+
+    Update default-2021.dwlt
+
+[33mcommit 67a10b65f93f782cee5bbd4c7fce137251467c68[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sun Oct 16 21:39:31 2022 +0200
+
+    .
+
+[33mcommit c9b24309d8201364aa0b8c306989a14d1ceed949[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sat Oct 15 21:00:31 2022 +0200
+
+    enemy-finished
+
+[33mcommit 872f9545aac038cc2193a58ea0534bc2f1164443[m
+Merge: a84f4de 11bcae1
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sat Oct 15 17:43:10 2022 +0200
+
+    Merge branch 'main' of https://github.com/omartrese/buddys-world
+
+[33mcommit a84f4de4ca140d0b6390980d97b15ff019cd2262[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Sat Oct 15 17:43:05 2022 +0200
+
+    enemy-progress3
+
+[33mcommit 11bcae19964b8638cc107374d55c664bfc6e5cbb[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Oct 14 17:51:28 2022 +0200
+
+    Update README.md
+
+[33mcommit 6c9a365336150d515bb0f436a20ad029fb19bf9d[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Oct 14 17:40:06 2022 +0200
+
+    enemy-script-progress2
+
+[33mcommit 6bab031df5bfe6e0fe5e2a6e145c0d33e81dd03d[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Fri Oct 14 16:23:13 2022 +0200
+
+    enemy-script-process1
+
+[33mcommit cd75f5bee5bdf1d4918e469d22c1df5478e711c2[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Mon Oct 10 16:48:04 2022 +0200
+
+    game v.0.1
+    
+    the character can move around the scene and throw stones.
+    the enemy is in process
+
+[33mcommit 8fe50127f4725a06768e6386d75690cb1cb3248e[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Mon Oct 10 16:38:41 2022 +0200
+
+    project init
+
+[33mcommit b3f3b635e7ac375a98d2aca7bf7262dc2ee87b14[m
+Author: omartrese <108763869+omartrese@users.noreply.github.com>
+Date:   Mon Oct 10 16:21:30 2022 +0200
+
+    Initial commit
