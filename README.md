@@ -3,7 +3,7 @@ here is the game's source code
 
 ## How to SET-UP
 
-First you need to have installed UNITY (link: https://unity.com/download)
+First you need to have installed UNITY (link: ***https://unity.com/download***)
 
 I developed this game on the Unity version *2021.3.11f1*. I don't know how it works on old versions but I recommend you use that version or higher
 
@@ -16,7 +16,7 @@ Then you have to descompress the ZIP and open the directory on UNITY HUB (you ne
 The other form is ***cloning the project***
 
 To do this you have to click on **code** and below you have the URL that you need to copy
-and with this URL you write this command in your terminal
+and with this URL you write this command in your terminal (obviously having git installed ***https://git-scm.com/downloads***)
 
 ```
 git clone https://github.com/omartrese/buddys-world.git
