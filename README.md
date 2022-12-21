@@ -13,7 +13,7 @@ If you want to download the ZIP click on **code** and **Download ZIP**
 
 Then you have to descompress the ZIP and open the directory on UNITY HUB (you need to have installed unity hub to manage your unity projects)
 
-The other form is cloning the project
+The other form is ***cloning the project***
 
 To do this you have to click on **code** and below you have the URL that you need to copy
 and with this URL you write this command in your terminal
