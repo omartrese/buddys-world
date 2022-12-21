@@ -3,7 +3,7 @@ here is the game's source code
 
 ## How to SET-UP
 
-First you need to have installed UNITY  
+First you need to have installed UNITY (link: https://unity.com/download)
 
 I developed this game on the Unity version *2021.3.11f1*. I don't know how it works on old versions but I recommend you use that version or higher
 
