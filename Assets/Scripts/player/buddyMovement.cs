@@ -81,7 +81,7 @@ public class buddyMovement : MonoBehaviour
 
         playerHealthText.text = "PlayerHealth: " + playerHealth.ToString(); //SHOWS THE PLAYER'S LIFE ON TEXT
 
-        shootTimer -= Time.deltaTime;  //SHOOW COOLDOWN
+        shootTimer -= Time.deltaTime;  //SHOOT COOLDOWN
 
         horizontal = Input.GetAxisRaw("Horizontal"); //A and D or LEFT and RIGHT ARROWS HAVE VALUES BETWEEN -1 and 1
 
