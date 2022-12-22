@@ -81,7 +81,7 @@ public class buddyMovement : MonoBehaviour
 
         playerHealthText.text = "PlayerHealth: " + playerHealth.ToString(); //SHOWS THE PLAYER'S LIFE ON TEXT
 
-        shootTimer -= Time.deltaTime;  //SHOOW COOLDOWN
+        shootTimer -= Time.deltaTime;  //SHOOT COOLDOWN
 
         horizontal = Input.GetAxisRaw("Horizontal"); //A and D or LEFT and RIGHT ARROWS HAVE VALUES BETWEEN -1 and 1
 
@@ -95,7 +95,6 @@ public class buddyMovement : MonoBehaviour
             
         } 
 
-<<<<<<< HEAD
         if(tutorialCollided)
         {
             StartCoroutine(shootTutorial());
@@ -103,9 +102,8 @@ public class buddyMovement : MonoBehaviour
 
 
         animator.SetBool("running", horizontal != 0.0f); //TO ANIMATE THE PLAYER
-=======
-            animator.SetBool("running", horizontal != 0.0f);
->>>>>>> 5433a905378139cc4e709de4635f915446280c57
+
+        animator.SetBool("running", horizontal != 0.0f);
         
 
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
