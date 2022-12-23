@@ -10,6 +10,8 @@ public class buddyMovement : MonoBehaviour
     public float speed = 1f;
     private Rigidbody2D rigidBody;
     private float horizontal;
+    private bool canMove;
+    public GameObject belowCast;
     public GameObject cameraObject;
    //----------------------------//
    //-----------JUMP-------------//
@@ -65,6 +67,7 @@ public class buddyMovement : MonoBehaviour
         Debug.Log("number of stones: " + numberStones);   
         shootTimer = 0f;       
         
+        canMove = true;
         rayLength = 0.65f;
         
         if(playerHealth <= 0)
@@ -128,13 +131,16 @@ public class buddyMovement : MonoBehaviour
            canJump = true;
         } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false;
 
-               
-
+        Debug.DrawRay(belowCast.transform.position, Vector3.right * 0.65f, Color.red);
+        if(Physics2D.Raycast(belowCast.transform.position, Vector2.right, 0.65f))
+        {
+            canMove = false;
+        } else canMove = true;
     }
 
     private void FixedUpdate()
     {
-        rigidBody.velocity = new Vector2(horizontal * speed * Time.deltaTime, rigidBody.velocity.y); //THE LINE THAT MAKES THE PLAYER MOVE
+        if(canMove) rigidBody.velocity = new Vector2(horizontal * speed * Time.deltaTime, rigidBody.velocity.y); //THE LINE THAT MAKES THE PLAYER MOVE
     }
 
     private void jump()
@@ -206,6 +212,10 @@ public class buddyMovement : MonoBehaviour
             Debug.Log("number stones: " + numberStones);
         }
 
+        if(other.gameObject.tag == "caveZone")
+        {
+            cameraObject.transform.position = new Vector3(46.3899994f, -14.0699997f, -10f);
+        }
     }
     
     IEnumerator shootTutorial()

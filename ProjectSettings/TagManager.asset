@@ -12,6 +12,7 @@ TagManager:
   - startLevel
   - dieZone
   - shootTutorial
+  - caveZone
   layers:
   - Default
   - TransparentFX
