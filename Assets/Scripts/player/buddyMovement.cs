@@ -49,8 +49,6 @@ public class buddyMovement : MonoBehaviour
     public GameObject shootTutorialCollider;
     bool tutorialCollided;
 
-
-
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -110,29 +108,29 @@ public class buddyMovement : MonoBehaviour
         
 
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        --- *JUMPING and THROWING*
+        --- *JUMPING and THROWING* 
         -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         ---*/
 
-        if(Input.GetKeyDown(KeyCode.W) && canJump) //IF THE PLAYER CAN JUMP IN THAT MOMENT AND PRESS THE *W* BUTTON, JUMPS
+        if(Input.GetKeyDown(KeyCode.W) && canJump) //If the player presses the W button and can, **JUMPS**
         {
             jump();
         }
         if(Input.GetKeyDown(KeyCode.Space) && numberStones > 0 && shootTimer <= 0f) 
         {
-            StartCoroutine(Shoot()); //IF THE PLAYER PRESS THE *SPACE*, THE COOLDOWN IS 0, AND HAVE STONES, SHOOTS
+            StartCoroutine(Shoot()); //If the player presses the SPACE button, have stones (finding stones bags), and the shootingCooldown is 0, **SHOOTS**
         }
 
         Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red); //*ray to debugging the player jump*
 
         
-        if(Physics2D.Raycast(transform.position, Vector2.down, rayLength)) //IF THE PLAYER IS IN THE FLOOR, CAN JUMP
+        if(Physics2D.Raycast(transform.position, Vector2.down, rayLength)) //If the player is on a floor, CAN JUMP (one of the conditions to jump is true)
         {
            canJump = true;
-        } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false;
+        } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false; //If not, can't jump
 
         Debug.DrawRay(belowCast.transform.position, Vector3.right * 0.65f, Color.red);
-        if(Physics2D.Raycast(belowCast.transform.position, Vector2.right, 0.65f))
+        if(Physics2D.Raycast(belowCast.transform.position, Vector2.right, 0.65f)) //**This line does the same thing than the PLAYER_JUMP, but with ITS MOVEMENT
         {
             canMove = false;
         } else canMove = true;
@@ -145,8 +143,8 @@ public class buddyMovement : MonoBehaviour
 
     private void jump()
     {
-        rigidBody.AddForce(Vector2.up * jumpForce); //THE LINE THAT ADDS A FORCE (Xd) TO JUMP
-        audioSource.PlayOneShot(jumpSound);
+        rigidBody.AddForce(Vector2.up * jumpForce); //The line of the PLAYER_JUMP
+        audioSource.PlayOneShot(jumpSound); //**and its sound**
     }
 
     IEnumerator Shoot()
@@ -167,28 +165,29 @@ public class buddyMovement : MonoBehaviour
 
         audioSource.PlayOneShot(throwSound);
 
-        numberStones--;
+        numberStones--; //Substract one stone 
 
         Debug.Log("number of stones: " + numberStones);
         
-        shootTimer = initialShootTimer;
+        shootTimer = initialShootTimer; //cooldown is Active  until the value is 0
         
-        GameObject newStone = Instantiate(stonePrefab, stoneOrigin.position, Quaternion.identity);
+        GameObject newStone = Instantiate(stonePrefab, stoneOrigin.position, Quaternion.identity); //Instantiate (as the function says xd) a stone at the player position
         
-        newStone.GetComponent<Rigidbody2D>().velocity = new Vector2(stoneSpeed * bDirection() * Time.fixedDeltaTime, 0f);
+        newStone.GetComponent<Rigidbody2D>().velocity = new Vector2(stoneSpeed * bDirection() * Time.fixedDeltaTime, 0f); //Moves the instantiated stone to the actual direction of the player
         
         yield return new WaitForSeconds(stoneCooldown);
         
-        Destroy(newStone);
+        Destroy(newStone); //after the stone cooldown, the instantiated stone have been destroyed
+
            
         
     }
 
     IEnumerator playerHit()
     {
-        playerHealth--;
-        transform.position = new Vector3(-11.8699999f,-1.54999995f,0f); 
-        cameraObject.transform.position = new Vector3(-5.01999998f, 0f, -10f);
+        playerHealth--; 
+        transform.position = new Vector3(-11.8699999f,-1.54999995f,0f);  //the position of the player is equal to the last checkpoint he was on
+        cameraObject.transform.position = new Vector3(-5.01999998f, 0f, -10f); //*** the same to the camera***
         Debug.Log("Player health: " + playerHealth);
         if(playerHealth == 0) Destroy(gameObject);
         yield return new WaitForSeconds(0);
@@ -198,12 +197,12 @@ public class buddyMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "projectile" || other.gameObject.tag == "dieZone")
         {
-            StartCoroutine(playerHit());
+            StartCoroutine(playerHit()); //When the player touchs a projectile or he falls, its health substracts one
         } 
 
         if(other.gameObject.tag == "shootTutorial")
         {
-            tutorialCollided = true;
+            tutorialCollided = true; //the initial tutorial
         }        
 
         if(other.gameObject.tag == "stonesBag")
