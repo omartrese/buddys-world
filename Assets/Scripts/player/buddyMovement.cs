@@ -10,9 +10,8 @@ public class buddyMovement : MonoBehaviour
     public float speed = 1f;
     private Rigidbody2D rigidBody;
     private float horizontal;
-    private bool canMove;
-    public GameObject belowCast;
-    public GameObject cameraObject;
+    public GameObject  cameraObject;
+    public bool canMove; 
    //----------------------------//
    //-----------JUMP-------------//
     public float jumpForce = 1f;
@@ -54,6 +53,8 @@ public class buddyMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
+        canMove = true;
+
         tutorialCollided = false;
         shootTutorialText.SetActive(false);
         
@@ -65,9 +66,7 @@ public class buddyMovement : MonoBehaviour
         Debug.Log("number of stones: " + numberStones);   
         shootTimer = 0f;       
         
-        canMove = true;
         rayLength = 0.65f;
-        
         if(playerHealth <= 0)
         {
             playerHealth = 1;
@@ -78,6 +77,8 @@ public class buddyMovement : MonoBehaviour
     
     void Update()
     {
+        canMove = true;
+
         if(gameObject == null) return; //IF THE PLAYER DOESN'T EXISTS (IF SOMETHING DESTROYED PLAYER), DO NOT EJECUTE THIS SCRIPT  
 
         playerHealthText.text = "PlayerHealth: " + playerHealth.ToString(); //SHOWS THE PLAYER'S LIFE ON TEXT
@@ -129,11 +130,7 @@ public class buddyMovement : MonoBehaviour
            canJump = true;
         } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false; //If not, can't jump
 
-        Debug.DrawRay(belowCast.transform.position, Vector3.right * 0.65f, Color.red);
-        if(Physics2D.Raycast(belowCast.transform.position, Vector2.right, 0.65f)) //**This line does the same thing than the PLAYER_JUMP, but with ITS MOVEMENT
-        {
-            canMove = false;
-        } else canMove = true;
+        
     }
 
     private void FixedUpdate()
