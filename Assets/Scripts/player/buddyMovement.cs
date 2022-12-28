@@ -46,6 +46,8 @@ public class buddyMovement : MonoBehaviour
     public GameObject shootTutorialText;
     public TextMeshProUGUI playerHealthText;
     public GameObject shootTutorialCollider;
+    public GameObject winText;
+    public GameObject winZone;
     bool tutorialCollided;
 
     void Start()
@@ -62,6 +64,8 @@ public class buddyMovement : MonoBehaviour
         animator = GetComponent<Animator>();   
         audioSource = GetComponent<AudioSource>();
         
+        winText.SetActive(false);
+
         numberStones = 0;
         Debug.Log("number of stones: " + numberStones);   
         shootTimer = 0f;       
@@ -212,8 +216,24 @@ public class buddyMovement : MonoBehaviour
         {
             cameraObject.transform.position = new Vector3(46.3899994f, -14.0699997f, -10f);
         }
+
+        if(other.gameObject.tag == "winZone")
+        {
+            StartCoroutine(win());
+        }
     }
     
+    IEnumerator win()
+    {
+        winText.SetActive(true);
+
+        Destroy(winZone);
+
+        yield return new WaitForSeconds(3);
+
+        Application.Quit();   
+    }
+
     IEnumerator shootTutorial()
     {
         shootTutorialText.SetActive(true);
