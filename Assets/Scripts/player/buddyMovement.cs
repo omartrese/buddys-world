@@ -10,6 +10,7 @@ public class buddyMovement : MonoBehaviour
     public float speed = 1f;
     private Rigidbody2D rigidBody;
     private float horizontal;
+    public GameObject belowCast;
     public GameObject  cameraObject;
     public bool canMove; 
    //----------------------------//
@@ -133,6 +134,11 @@ public class buddyMovement : MonoBehaviour
         {
            canJump = true;
         } else if(!Physics2D.Raycast(transform.position, Vector2.down, rayLength)) canJump = false; //If not, can't jump
+        
+        if(Physics2D.Raycast(belowCast.transform.position, Vector2.left, 0.67f))
+        {
+            canMove = true;
+        } else canMove = false;
 
         
     }
