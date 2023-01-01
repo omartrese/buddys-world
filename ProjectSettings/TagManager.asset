@@ -13,6 +13,7 @@ TagManager:
   - dieZone
   - shootTutorial
   - caveZone
+  - winZone
   layers:
   - Default
   - TransparentFX
